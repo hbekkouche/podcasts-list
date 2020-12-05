@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <style>
+      ul{
+         list-style: none;
+      }
+      a{
+         display: block;
+      }
+      .thumbnail{
+         width: 64px;
+      }
+      .thumbnail,span{
+         vertical-align: middle;
+         padding: 2px;
+      }
+   </style>
+</head>
+
+<body>
+   <ul></ul>
+   <script>
+      fetch('channels.json')
+         .then(response => response.json())
+         .then(data => {
+            var ul = document.querySelector('ul');
+            var html="";
+            data.forEach(e => {
+               html += "<li>"
+                  +"<a href='"+e.google_podcasts_link+"' target='_blank'>"
+                  +"<img class='thumbnail' src='"+e.thumbnail+"'/>"  
+                  +"<span>Channel: "+e.name+"| Podcaster: "+e.podcaster+"</span></a></li>"
+            });
+            ul.innerHTML = html;
+         });
+   </script>
+</body>
+
+</html>
